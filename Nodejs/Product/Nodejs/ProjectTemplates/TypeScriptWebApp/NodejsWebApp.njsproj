@@ -33,12 +33,12 @@
 
   <ItemGroup>
     <Compile Include="server.ts" />
-    <Content Include="tsconfig.json" />
+    <Compile Include="tsconfig.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>
 
-  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
 
   <ProjectExtensions>
     <VisualStudio>

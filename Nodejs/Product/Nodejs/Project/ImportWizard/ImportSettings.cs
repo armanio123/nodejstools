@@ -394,7 +394,7 @@ $@"{{
 
             writer.WriteStartElement("VisualStudioVersion");
             writer.WriteAttributeString("Condition", "'$(VisualStudioVersion)' == ''");
-            writer.WriteString("14.0");
+            writer.WriteString("16.0");
             writer.WriteEndElement();
 
             writer.WriteStartElement("VSToolsPath");
@@ -443,13 +443,13 @@ $@"{{
 
             foreach (var file in EnumerateAllFiles(sourcePath, projectFileFilters, projectLanguage))
             {
-                if (TypeScriptHelpers.IsTypeScriptFile(file))
+                if (TypeScriptHelpers.IsTypeScriptFile(file) || TypeScriptHelpers.IsTsJsConfigJsonFile(file))
                 {
-                    writer.WriteStartElement("Compile");
+                    writer.WriteStartElement(NodejsConstants.CompileItemType);
                 }
                 else
                 {
-                    writer.WriteStartElement("Content");
+                    writer.WriteStartElement(NodejsConstants.ContentItemType);
                 }
                 writer.WriteAttributeString("Include", file);
                 writer.WriteEndElement();
@@ -471,7 +471,7 @@ $@"{{
             writer.WriteEndElement();
 
             writer.WriteStartElement("Import");
-            writer.WriteAttributeString("Project", @"$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets");
+            writer.WriteAttributeString("Project", @"$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets");
             writer.WriteEndElement();
 
             writer.WriteRaw(@"
